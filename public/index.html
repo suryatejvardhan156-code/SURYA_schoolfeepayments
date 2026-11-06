@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Fee Payment Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>School Fee Payment Management</h1>
+    <p>Admin dashboard</p>
+  </header>
+
+  <main>
+    <section class="cards">
+      <div class="card"><span>Total Students</span><strong id="totalStudents">0</strong></div>
+      <div class="card"><span>Total Fees</span><strong id="totalFees">₹0.00</strong></div>
+      <div class="card"><span>Collected Fees</span><strong id="collectedFees">₹0.00</strong></div>
+      <div class="card"><span>Pending Fees</span><strong id="pendingFees">₹0.00</strong></div>
+    </section>
+
+    <section class="panel">
+      <h2>Add Student</h2>
+      <form id="studentForm" class="form-grid">
+        <input name="name" placeholder="Student name" required>
+        <input name="class" placeholder="Class (e.g. 10)" required>
+        <input name="rollno" placeholder="Roll number" required>
+        <input name="phone" placeholder="Phone number">
+        <input name="email" type="email" placeholder="Email">
+        <button type="submit">Add Student</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Assign Fee</h2>
+      <form id="feeForm" class="form-grid">
+        <select name="student_id" id="feeStudent" required><option value="">Select student</option></select>
+        <input name="academic_year" placeholder="Academic year (2026-27)" required>
+        <input name="fee_type" placeholder="Fee type (Tuition)" required>
+        <input name="total_amount" type="number" min="1" step="0.01" placeholder="Total amount" required>
+        <input name="due_date" type="date" required>
+        <button type="submit">Assign Fee</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Record Payment</h2>
+      <form id="paymentForm" class="form-grid">
+        <select name="fee_id" id="paymentFee" required><option value="">Select fee record</option></select>
+        <input name="amount_paid" type="number" min="0.01" step="0.01" placeholder="Amount paid" required>
+        <input name="payment_date" type="date" required>
+        <select name="payment_method" required>
+          <option value="">Payment method</option><option>Cash</option><option>UPI</option><option>Card</option><option>Bank Transfer</option>
+        </select>
+        <input name="receipt_no" placeholder="Receipt number" required>
+        <button type="submit">Save Payment</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Student Fee Report</h2>
+      <div class="report-controls">
+        <select id="reportStudent"><option value="">Select student</option></select>
+        <button id="reportButton" type="button">Generate Report</button>
+      </div>
+      <div id="reportArea"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Fee Details and Pending Payments</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fee ID</th><th>Student</th><th>Class</th><th>Fee Type</th><th>Total</th><th>Paid</th><th>Pending</th><th>Due Date</th><th>Status</th></tr></thead>
+          <tbody id="feeTable"><tr><td colspan="9">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Student Records</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Name</th><th>Class</th><th>Roll No.</th><th>Phone</th><th>Email</th></tr></thead>
+          <tbody id="studentTable"></tbody>
+        </table>
+      </div>
+    </section>
+    <p id="message" role="status"></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
